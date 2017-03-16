@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 
+import contentReducer from './reducer_content';
 
 export default combineReducers({
-  state: (state = {}) => state
+  content: contentReducer
 });
