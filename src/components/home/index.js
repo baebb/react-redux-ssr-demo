@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+if(process.env.WEBPACK) require('../../app.css');
 
 import {getContent} from '../../actions/index';
 
@@ -13,8 +14,8 @@ class Home extends Component {
     const {currentContentTitle, currentContent} = this.props;
     return (
       <div className='home'>
-        <div>Ok ready</div>
-        <div className="panel panel-default">
+        <div>Ok readiest</div>
+        <div className="panel">
           <div className="panel-heading">
             {currentContentTitle}
           </div>

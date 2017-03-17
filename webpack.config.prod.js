@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: path.resolve(__dirname, 'src'),
@@ -10,11 +11,12 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
+    new ExtractTextPlugin("styles.css"),
     //set env
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
-        BUILD: true,
+        WEBPACK: true
       }
     }),
     //js minification
@@ -37,7 +39,15 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: path.resolve(__dirname, 'src')
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        }),
+        include: path.resolve(__dirname, 'src')
       }
-    ]
+    ],
   }
 };

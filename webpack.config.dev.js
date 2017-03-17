@@ -2,32 +2,37 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-	entry: [
+  entry: [
     'webpack-hot-middleware/client',
-		path.resolve(__dirname, 'src')
+    path.resolve(__dirname, 'src')
   ],
-	output: {
-		path: path.resolve(__dirname, 'src'),
-		filename: 'bundle.js',
-		publicPath: '/'
-	},
-	plugins: [
+  output: {
+    path: path.resolve(__dirname, 'src'),
+    filename: 'bundle.js',
+    publicPath: '/'
+  },
+  plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-		new webpack.DefinePlugin({
-			'process.env': {
-				NODE_ENV: JSON.stringify('development'),
-				BUILD: true
-			}
-		})
-	],
-	module: {
-		loaders: [
-			{
-				test: /\.js$/,
-				loader: 'babel-loader',
-				include: path.resolve(__dirname, 'src')
-		    }
-		]
-	}
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('development'),
+        WEBPACK: true
+      }
+    })
+  ],
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        include: path.resolve(__dirname, 'src')
+      },
+      {
+        test: /\.css/,
+        loader: 'style-loader!css-loader',
+        include: path.resolve(__dirname, 'src')
+      }
+    ]
+  }
 };
