@@ -10,11 +10,15 @@ class Home extends Component {
   
   
   render() {
-    const {currentContent} = this.props;
-    console.log(currentContent);
+    const {currentContentTitle, currentContent} = this.props;
     return (
       <div className='home'>
         <div>Ok ready</div>
+        <div className="panel panel-default">
+          <div className="panel-heading">
+            {currentContentTitle}
+          </div>
+        </div>
       </div>
     );
   }
@@ -22,6 +26,7 @@ class Home extends Component {
 
 function mapStateToProps (state) {
   return {
+    currentContentTitle: state.content.currentContentTitle,
     currentContent: state.content.currentContent
   }
 }
