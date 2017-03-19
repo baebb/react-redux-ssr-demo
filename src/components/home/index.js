@@ -26,8 +26,9 @@ class Home extends Component {
     const {currentContent} = this.props;
     if (currentIndexDesc === '') {
       const nextIndex = (currentIndex + 1) % currentContent.length;
+      const cleanedDesc = currentContent[currentIndex].description.replace(/<br\s*[\/]?>/gi, "\n");
       this.setState({
-        currentIndexDesc: currentContent[currentIndex].description,
+        currentIndexDesc: cleanedDesc,
         nextIndexHeadline: currentContent[nextIndex].title
       })
     }

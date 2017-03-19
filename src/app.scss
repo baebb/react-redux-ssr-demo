@@ -2,4 +2,10 @@
   .panel-heading {
     color: purple;
   }
+  .panel-body {
+    white-space: pre-wrap;
+    &::before, &::after {
+      display: none;
+    }
+  }
 }
