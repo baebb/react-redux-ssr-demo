@@ -2,10 +2,11 @@
   .panel-heading {
     color: purple;
   }
-  .panel-body {
+  .description {
     white-space: pre-wrap;
     &::before, &::after {
       display: none;
     }
   }
 }
+

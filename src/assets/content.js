@@ -17,7 +17,7 @@ export default {
     },
     {
       "title": "What Comes with the iPad Mini?",
-      "description": " The iPad Mini only ships brand new with the Lightning charger offered by Apple. Other accessories may be packaged along with the iPad Mini when it's being offered by a private seller on Gumtree. If you want to save a little money ? or even just want a little convenience ? consider scoping out package deals that include items such as the Smart Cover, Bluetooth keyboards, and a stylus.<br /><br />Check out the options on Gumtree, and you can have a great gadget at your disposal for a very fair price."
+      "description": " The iPad Mini only ships brand new with the Lightning charger offered by Apple. Other accessories may be packaged along with the iPad Mini when it's being offered by a private seller on Gumtree. If you want to save a little money - or even just want a little convenience - consider scoping out package deals that include items such as the Smart Cover, Bluetooth keyboards, and a stylus.<br /><br />Check out the options on Gumtree, and you can have a great gadget at your disposal for a very fair price."
     }
   ]
 }
