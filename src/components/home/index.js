@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-if(process.env.WEBPACK) require('../../app.css');
+if(process.env.WEBPACK) require('../../assets/bootstrap.css'); //only import this if webpack
+if(process.env.WEBPACK) require('../../app.scss'); //only import this if webpack
 
 import {getContent} from '../../actions/index';
 
@@ -13,9 +14,9 @@ class Home extends Component {
   render() {
     const {currentContentTitle, currentContent} = this.props;
     return (
-      <div className='home'>
+      <div className="home">
         <div>Ok readiest</div>
-        <div className="panel">
+        <div className="panel panel-default">
           <div className="panel-heading">
             {currentContentTitle}
           </div>

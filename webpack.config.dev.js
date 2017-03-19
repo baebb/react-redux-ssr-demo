@@ -32,6 +32,17 @@ module.exports = {
         test: /\.css/,
         loader: 'style-loader!css-loader',
         include: path.resolve(__dirname, 'src')
+      },
+      {
+        test: /\.scss/,
+        use: [{
+          loader: "style-loader" // creates style nodes from JS strings
+        }, {
+          loader: "css-loader" // translates CSS into CommonJS
+        }, {
+          loader: "sass-loader" // compiles Sass to CSS
+        }],
+        include: path.resolve(__dirname, 'src')
       }
     ]
   }

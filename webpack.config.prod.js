@@ -47,6 +47,14 @@ module.exports = {
           use: "css-loader"
         }),
         include: path.resolve(__dirname, 'src')
+      },
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader!sass-loader"
+        }),
+        include: path.resolve(__dirname, 'src')
       }
     ],
   }
