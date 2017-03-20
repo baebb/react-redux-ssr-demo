@@ -13,7 +13,8 @@ class Home extends Component {
       currentContentThumb: '',
       currentIndex: 0,
       currentIndexDesc: '',
-      nextIndexHeadline: ''
+      nextIndexHeadline: '',
+      collapsed: false
     };
   }
   
@@ -39,6 +40,7 @@ class Home extends Component {
     }
   }
   
+  //show next index content
   nextIndex() {
     const {currentIndex} = this.state;
     const {currentContent} = this.props;
@@ -48,6 +50,7 @@ class Home extends Component {
     })
   }
   
+  //show prev index content
   prevIndex() {
     const {currentIndex} = this.state;
     const {currentContent} = this.props;
@@ -57,18 +60,35 @@ class Home extends Component {
     })
   }
   
+  //toggles collapse
+  toggleCollapse() {
+    this.setState({
+      collapsed: !this.state.collapsed
+    })
+  }
+  
   render() {
-    const {currentContentThumb, currentIndexDesc, nextIndexHeadline} = this.state;
+    const {currentContentThumb, currentIndexDesc, nextIndexHeadline, collapsed} = this.state;
     const {currentContentTitle, currentContent} = this.props;
+    const stateStyle = collapsed ? "hidden" : "show";
     return (
       <div className="home">
         <div className="row">
           <div className="col-xs-12 col-md-8 col-md-offset-2">
             <div className="panel panel-default">
               <div className="panel-heading">
-                {currentContentTitle}
+                <div className="row">
+                  <div className="col-xs-6 title">
+                    {currentContentTitle}
+                  </div>
+                  <div className="col-xs-6">
+                    <a className="pull-right collapse-toggle" onClick={() => this.toggleCollapse()}>
+                      {collapsed ? "▼" : "▲"}
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div className="panel-body">
+              <div className={`panel-body ${stateStyle}`}>
                 <div className="row">
                   <div className="col-xs-12 col-md-4">
                     <img className="img-responsive" src={currentContentThumb}/>
@@ -76,22 +96,23 @@ class Home extends Component {
                   <div className="col-xs-12 col-md-8 description">{currentIndexDesc}</div>
                 </div>
               </div>
-              <div className="panel-footer">
+              <div className={`panel-footer ${stateStyle}`}>
                 <div className="row">
-                  <div className="col-md-6 col-xs-12">
+                  <div className="col-xs-6">
                     <button
-                      className="btn btn-primary pull-left"
+                      className="btn btn-default pull-left prev-button"
                       onClick={() => this.prevIndex()}
                     >
                       ◄ Prev
                     </button>
                   </div>
-                  <div className="col-md-6 col-xs-12">
+                  <div className="col-xs-6">
                     <button
-                      className="btn btn-primary pull-right"
+                      className="btn btn-default pull-right next-button"
                       onClick={() => this.nextIndex()}
                     >
-                      {nextIndexHeadline} ►
+                      <span className="long-text">{nextIndexHeadline} ►</span>
+                      <span className="short-text">Next ►</span>
                     </button>
                   </div>
                 </div>

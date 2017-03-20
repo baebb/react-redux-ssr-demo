@@ -1,12 +1,51 @@
 .panel {
   .panel-heading {
-    color: purple;
+    background-color: #C9C9A6;
+    .title {
+      color: black;
+      font-weight: bold;
+    }
+    .collapse-toggle {
+      color: green;
+      cursor: pointer;
+      text-decoration: none;
+    }
   }
-  .description {
-    white-space: pre-wrap;
-    &::before, &::after {
+  .panel-body {
+    .description {
+      white-space: pre-wrap;
+      &::before, &::after {
+        display: none;
+      }
+    }
+  }
+  .panel-footer {
+    background-color: transparent;
+    .btn {
+      color: green;
+      background-color: transparent;
+      border: none;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+    .short-text {
       display: none;
     }
   }
 }
 
+@media screen and (max-width: 600px) {
+  .panel {
+    .panel-footer {
+      .next-button {
+        .long-text {
+          display: none;
+        }
+        .short-text {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
