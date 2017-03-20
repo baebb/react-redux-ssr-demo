@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-if(process.env.WEBPACK) require('../../assets/bootstrap.css'); //only import this if webpack
-if(process.env.WEBPACK) require('../../app.scss'); //only import this if webpack
+if (process.env.WEBPACK) require('../../assets/bootstrap.css'); //only import this if webpack
+if (process.env.WEBPACK) require('../../app.scss'); //only import this if webpack
 
 import {getContent} from '../../actions/index';
-
 
 
 class Home extends Component {
@@ -15,19 +14,20 @@ class Home extends Component {
       currentIndex: 0,
       currentIndexDesc: '',
       nextIndexHeadline: ''
-    }
+    };
   }
-
+  
   componentWillMount() {
     this.props.dispatch(getContent());
   }
-
-  //here we update component state with returned data from getContent action
-  componentDidUpdate() {
+  
+  //here we update component state with content for the currentIndex
+  componentDidUpdate(oldProps, oldState) {
     const {currentIndex, currentIndexDesc} = this.state;
     const {currentContent} = this.props;
-    if (currentIndexDesc === '') {
-      //index scroller
+    //only update if there is no description text or if currentIndex is updated
+    if (currentIndexDesc === '' || oldState.currentIndex !== currentIndex) {
+      //get next index
       const nextIndex = (currentIndex + 1) % currentContent.length;
       //replace line breaks with new lines
       const cleanedDesc = currentContent[currentIndex].description.replace(/<br\s*[\/]?>/gi, "\n");
@@ -39,10 +39,26 @@ class Home extends Component {
     }
   }
   
+  nextIndex() {
+    const {currentIndex} = this.state;
+    const {currentContent} = this.props;
+    const nextIndex = (currentIndex + 1) % currentContent.length;
+    this.setState({
+      currentIndex: nextIndex
+    })
+  }
   
+  prevIndex() {
+    const {currentIndex} = this.state;
+    const {currentContent} = this.props;
+    const prevIndex = (currentContent.length + currentIndex - 1) % currentContent.length;
+    this.setState({
+      currentIndex: prevIndex
+    })
+  }
   
   render() {
-    const {currentContentThumb, currentIndex, currentIndexDesc, nextIndexHeadline} = this.state;
+    const {currentContentThumb, currentIndexDesc, nextIndexHeadline} = this.state;
     const {currentContentTitle, currentContent} = this.props;
     return (
       <div className="home">
@@ -63,11 +79,19 @@ class Home extends Component {
               <div className="panel-footer">
                 <div className="row">
                   <div className="col-md-6 col-xs-12">
-                    <button className="btn btn-primary pull-left">Prev</button>
+                    <button
+                      className="btn btn-primary pull-left"
+                      onClick={() => this.prevIndex()}
+                    >
+                      ◄ Prev
+                    </button>
                   </div>
                   <div className="col-md-6 col-xs-12">
-                    <button className="btn btn-primary pull-right visible-block-md">
-                      {nextIndexHeadline}
+                    <button
+                      className="btn btn-primary pull-right"
+                      onClick={() => this.nextIndex()}
+                    >
+                      {nextIndexHeadline} ►
                     </button>
                   </div>
                 </div>
@@ -80,7 +104,7 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     currentContentTitle: state.content.currentContentTitle,
     currentContent: state.content.currentContent
