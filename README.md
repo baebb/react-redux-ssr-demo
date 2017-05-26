@@ -1,8 +1,8 @@
-# gumtree-react-ssr
+# react-redux-ssr-demo
 
 ### Install
 ```sh
-git clone https://github.com/justrossthings/gumtree-react-ssr.git
+git clone https://github.com/justrossthings/react-redux-ssr-demo.git
 cd gumtree-react-ssr
 npm install
 ```
