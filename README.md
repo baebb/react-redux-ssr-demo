@@ -3,7 +3,7 @@
 ### Install
 ```sh
 git clone https://github.com/justrossthings/react-redux-ssr-demo.git
-cd gumtree-react-ssr
+cd react-redux-ssr-demo
 npm install
 ```
 
